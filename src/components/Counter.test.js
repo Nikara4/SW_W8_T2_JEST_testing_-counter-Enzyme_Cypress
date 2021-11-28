@@ -46,11 +46,10 @@ describe("Counter tests", () => {
 
   it("should input change counter value", () => {
     const input = wrapper.find("input");
-    let number = wrapper.find("#counter");
+    input.simulate("change", { target: { value: "50" } });
     const changeCounter = wrapper.find("#change");
-    input.at(0).simulate("change", { target: { name: "value", value: 50 } });
     changeCounter.simulate("click");
-    number = wrapper.find("#counter");
+    let number = wrapper.find("#counter");
 
     expect(number.text()).toBe("50");
   });

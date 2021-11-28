@@ -25,10 +25,10 @@ const Counter = ({ start }) => {
 
       <input
         value={inputValue}
+        id="input"
         onChange={getValue}
         placeholder="type any number"
         type="number"
-        defaultValue={0}
       />
 
       <button onClick={changeCounterValue} name="changeCounter" id="change">
