@@ -1,22 +1,19 @@
 import { useState } from "react";
-import Number from "./components/Number";
-import Input from "./components/Input";
-import Button from "./components/Button";
 
-const Counter = () => {
-  let [counter, setCounter] = useState(0);
+const Counter = ({ start }) => {
+  let [counter, setCounter] = useState(start ? start : 0);
+  const [inputValue, setInputValue] = useState(start ? start : 0);
 
-  const addToCounter = () => setCounter(counter++);
-  const subtractFromCounter = () => setCounter(counter--);
+  const addToCounter = () => setCounter(++counter);
+  const subtractFromCounter = () => setCounter(--counter);
 
-  const getValue = (event) => setCounter(event.target.value);
+  const getValue = (event) => setInputValue(event.target.value);
 
-  const changeCounterValue = (event) => {
-    event.preventDefault();
+  const changeCounterValue = () => {
+    setCounter(inputValue);
   };
 
-  const resetCounterValue = (event) => {
-    event.preventDefault();
+  const resetCounterValue = () => {
     setCounter(0);
   };
 
@@ -25,20 +22,32 @@ const Counter = () => {
       <header className="counter--header">
         <h1>Testing exercise 2 - Szkoła Reacta</h1>
       </header>
-      <Input handleChange={getValue} />
-      <Button handleClick={changeCounterValue} name="changeCounter">
+
+      <input
+        value={inputValue}
+        onChange={getValue}
+        placeholder="type any number"
+        type="number"
+        defaultValue={0}
+      />
+
+      <button onClick={changeCounterValue} name="changeCounter" id="change">
         Change number
-      </Button>
-      <Button handleClick={resetCounterValue} name="resetCounter">
+      </button>
+
+      <button onClick={resetCounterValue} name="resetCounter" id="reset">
         Reset number
-      </Button>
-      <Button name="add" handleClick={addToCounter}>
+      </button>
+
+      <button name="add" id="add" onClick={addToCounter}>
         +
-      </Button>
-      <Button name="subtract" handleClick={subtractFromCounter}>
+      </button>
+
+      <button name="subtract" id="subtract" onClick={subtractFromCounter}>
         -
-      </Button>
-      <Number counter={counter} />
+      </button>
+
+      <span id="counter">{counter}</span>
     </div>
   );
 };
