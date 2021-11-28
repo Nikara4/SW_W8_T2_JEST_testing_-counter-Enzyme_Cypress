@@ -45,7 +45,7 @@ describe("Counter tests", () => {
   });
 
   it("should input change counter value", () => {
-    const input = wrapper.find("input");
+    const input = wrapper.find("#input");
     input.simulate("change", { target: { value: "50" } });
     const changeCounter = wrapper.find("#change");
     changeCounter.simulate("click");
